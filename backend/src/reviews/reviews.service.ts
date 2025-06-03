@@ -1,18 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateReviewDto } from './dto/create-review.dto';
-import { Review } from './schemas/review.schema';
+import { Review, ReviewDocument } from './schemas/review.schema';
 
 @Injectable()
 export class ReviewsService {
-  constructor(@InjectModel(Review.name) private reviewModel: Model<Review>) {}
+  constructor(
+    @InjectModel(Review.name) private reviewModel: Model<ReviewDocument>,
+  ) {}
 
-  create(data: CreateReviewDto) {
-    return this.reviewModel.create(data);
+  async create(dto: CreateReviewDto): Promise<Review> {
+    return this.reviewModel.create({
+      ...dto,
+      bookId: new Types.ObjectId(dto.bookId),
+    });
   }
 
-  findByBook(bookId: string) {
-    return this.reviewModel.find({ bookId }).sort({ createdAt: -1 }).exec();
+  async findAll(): Promise<Review[]> {
+    return this.reviewModel.find().exec();
   }
 }

@@ -6,14 +6,16 @@ import { Book, BookDocument } from './schemas/book.schema';
 
 @Injectable()
 export class BooksService {
-  constructor(@InjectModel(Book.name) private bookModel: Model<BookDocument>) {}
+  constructor(
+    @InjectModel(Book.name) private readonly bookModel: Model<BookDocument>,
+  ) {}
 
   async create(createBookDto: CreateBookDto): Promise<Book> {
     return this.bookModel.create(createBookDto);
   }
 
   async findAll(): Promise<any[]> {
-    return this.bookModel.aggregate([
+    const result = await this.bookModel.aggregate([
       {
         $lookup: {
           from: 'reviews',
@@ -40,6 +42,7 @@ export class BooksService {
         },
       },
     ]);
+    return result;
   }
 
   async findOne(id: string): Promise<Book> {
