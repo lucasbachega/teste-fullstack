@@ -6,4 +6,7 @@ export class CreateBookDto {
 
   @IsString()
   author: string;
+
+  @IsString()
+  description: string;
 }

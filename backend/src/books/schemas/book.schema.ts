@@ -10,6 +10,9 @@ export class Book {
 
   @Prop({ required: true })
   author: string;
+
+  @Prop({ required: false })
+  description: string;
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);
