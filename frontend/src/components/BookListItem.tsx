@@ -1,6 +1,6 @@
 import { IBook } from "@/types/book";
 import { renderStars } from "@/utils/books";
-import { Button } from "./ui/Button";
+import Link from "next/link";
 import { Card } from "./ui/Card";
 
 interface Props extends IBook {
@@ -8,7 +8,7 @@ interface Props extends IBook {
 }
 
 const BookListItem = ({
-  _id,
+  _id: bookId,
   title,
   description,
   avgRating = 0,
@@ -16,19 +16,11 @@ const BookListItem = ({
   position,
   author,
 }: Props) => {
-  const stars = Array.from({ length: 5 }, (_, i) => (
-    <span
-      key={i}
-      className={
-        i < Math.floor(avgRating) ? "text-yellow-400" : "text-gray-300"
-      }
-    >
-      ★
-    </span>
-  ));
-
   return (
-    <Card variant="elevated" className="flex items-start justify-between gap-3 relative">
+    <Card
+      variant="elevated"
+      className="flex items-start justify-between gap-3 relative"
+    >
       <div className="flex-1 space-y-1">
         <div className="text-sm text-zinc-400 absolute top-4 right-4">
           #{position}
@@ -60,7 +52,8 @@ const BookListItem = ({
       </div>
 
       <div className="self-end">
-        <Button variant="text">Ver livro</Button>
+        <Link href={`/books/${bookId}`}>Ver livro</Link>
+        {/* <Button variant="text">Ver livro</Button> */}
       </div>
     </Card>
   );

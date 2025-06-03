@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { Book } from './schemas/book.schema';
@@ -15,5 +15,10 @@ export class BooksController {
   @Get()
   findAll(): Promise<Book[]> {
     return this.booksService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<Book> {
+    return this.booksService.findOne(id);
   }
 }

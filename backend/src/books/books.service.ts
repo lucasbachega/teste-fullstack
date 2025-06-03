@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateBookDto } from './dto/create-book.dto';
@@ -12,7 +12,41 @@ export class BooksService {
     return this.bookModel.create(createBookDto);
   }
 
-  async findAll(): Promise<Book[]> {
-    return this.bookModel.find().exec();
+  async findAll(): Promise<any[]> {
+    return this.bookModel.aggregate([
+      {
+        $lookup: {
+          from: 'reviews',
+          localField: '_id',
+          foreignField: 'bookId',
+          as: 'reviews',
+        },
+      },
+      {
+        $addFields: {
+          reviewsCount: { $size: '$reviews' },
+          avgRating: {
+            $cond: [
+              { $gt: [{ $size: '$reviews' }, 0] },
+              { $avg: '$reviews.rating' },
+              0,
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          reviews: 0,
+        },
+      },
+    ]);
+  }
+
+  async findOne(id: string): Promise<Book> {
+    const book = await this.bookModel.findById(id).exec();
+    if (!book) {
+      throw new NotFoundException('Book not found');
+    }
+    return book;
   }
 }

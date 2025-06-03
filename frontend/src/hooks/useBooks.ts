@@ -34,7 +34,7 @@ export function useBooks() {
     queryKey: ["books"],
     queryFn: async () => {
       const res = await api.get("/books");
-      return mockBooks;
+      return res?.data;
     },
   });
 }
