@@ -2,11 +2,9 @@ version: '3.8'
 
 services:
   mongo:
-    image: mongo:6.0
+    image: mongo:4.4
     container_name: mongo
     platform: linux/amd64
-    ports:
-      - '27017:27017'
     volumes:
       - mongo_data:/data/db
     restart: unless-stopped
@@ -17,7 +15,9 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     ports:
-      - '9100:9100'
+      - '9200:9100'
+    expose:
+      - '9100'
     environment:
       - MONGO_URI=mongodb://mongo:27017/bookreviews
     depends_on:
@@ -29,9 +29,11 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     ports:
-      - '3000:3000'
+      - '3500:3000'
+    expose:
+      - '3000'
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:3000
+      - NEXT_PUBLIC_API_URL=http://backend:9100
     depends_on:
       - backend
 
