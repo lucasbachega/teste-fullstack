@@ -1,7 +1,7 @@
 import { IBook } from "@/types/book";
-import { renderStars } from "@/utils/books";
 import Link from "next/link";
 import { Card } from "./ui/Card";
+import Stars from "./ui/Stars";
 
 interface Props extends IBook {
   position: number;
@@ -41,14 +41,11 @@ const BookListItem = ({
             {description}
           </p>
         )}
-
-        <div className="flex items-center gap-1 text-sm mt-2">
-          {renderStars(avgRating)}
-          <span className="ml-2 text-zinc-500 dark:text-zinc-400">
-            {avgRating.toFixed(1)} ({reviewsCount ?? 0} review
-            {reviewsCount !== 1 ? "s" : ""})
-          </span>
-        </div>
+        <Stars
+          className="mt-2"
+          avgRating={avgRating}
+          reviewsCount={reviewsCount}
+        />
       </div>
 
       <div className="self-end">

@@ -20,4 +20,11 @@ export class ReviewsService {
   async findAll(): Promise<Review[]> {
     return this.reviewModel.find().exec();
   }
+
+  async findByBook(bookId: string): Promise<Review[]> {
+    return this.reviewModel
+      .find({ bookId: new Types.ObjectId(bookId) })
+      .sort({ createdAt: -1 })
+      .exec();
+  }
 }

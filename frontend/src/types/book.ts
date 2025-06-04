@@ -6,3 +6,10 @@ export interface IBook {
   avgRating: number;
   reviewsCount: number;
 }
+
+export interface IReview {
+  reviewer: string;
+  rating: number;
+  comment: string;
+  createdAt?: string;
+}
