@@ -21,9 +21,10 @@ export const Card = ({
   children,
   variant = "default",
   className = "",
+  ...props
 }: CardProps) => {
   return (
-    <div className={`${base} ${variants[variant]} ${className}`}>
+    <div className={`${base} ${variants[variant]} ${className}`} {...props}>
       {children}
     </div>
   );

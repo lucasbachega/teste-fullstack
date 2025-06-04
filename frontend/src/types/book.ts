@@ -8,7 +8,7 @@ export interface IBook {
 }
 
 export interface IReview {
-  reviewer: string;
+  reviewer?: string;
   rating: number;
   comment: string;
   createdAt?: string;

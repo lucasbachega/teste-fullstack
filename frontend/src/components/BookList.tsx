@@ -8,7 +8,7 @@ const BookList = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center py-10 text-lg animate-pulse">
+      <div className="my-10 text-center py-10 text-lg animate-pulse">
         Loading top books...
       </div>
     );
@@ -16,7 +16,7 @@ const BookList = () => {
 
   if (error) {
     return (
-      <div className="text-center py-10 text-red-500">
+      <div className="my-10 text-center py-10 text-red-500">
         Error loading books. Please try again later.
       </div>
     );
@@ -24,7 +24,9 @@ const BookList = () => {
 
   if (!Array.isArray(books) || books.length === 0) {
     return (
-      <div className="text-center py-10 text-zinc-500">No books found.</div>
+      <div className="my-10 text-center py-10 text-zinc-500">
+        No books found.
+      </div>
     );
   }
 
@@ -34,7 +36,7 @@ const BookList = () => {
         📚 Top Books
       </h1>
 
-      <ul className="flex flex-col gap-6">
+      <ul className="flex flex-col gap-4">
         {books.map((book, idx: number) => {
           return <BookListItem key={book._id} position={idx + 1} {...book} />;
         })}

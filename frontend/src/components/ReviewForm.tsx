@@ -3,7 +3,7 @@
 import { submitReview } from "@/service/books";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "./ui/Button";
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const reviewSchema = z.object({
-  reviewer: z.string().min(2, "Name is too short"),
+  reviewer: z.string().optional(),
   rating: z.number().min(1).max(5),
   comment: z.string().min(3, "Comment is too short"),
 });
@@ -40,9 +40,9 @@ const ReviewForm = ({ bookId }: Props) => {
   const mutation = useMutation({
     mutationFn: (data: ReviewInput) => submitReview(bookId, data),
     onSuccess: () => {
-      setEnabledForm(true);
       queryClient.invalidateQueries({ queryKey: ["reviews", bookId] });
       queryClient.invalidateQueries({ queryKey: ["book", bookId] });
+      setEnabledForm(false);
       reset();
     },
   });
@@ -133,4 +133,4 @@ const ReviewForm = ({ bookId }: Props) => {
   );
 };
 
-export default ReviewForm;
+export default memo(ReviewForm);

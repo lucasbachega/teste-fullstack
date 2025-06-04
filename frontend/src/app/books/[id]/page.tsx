@@ -20,7 +20,7 @@ export default function BookDetailPage({ params }: Props) {
     <div className="max-w-3xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <Card variant="elevated">
         <h1 className="text-sm font-bold text-zinc-500 uppercase tracking-wide mb-2">
-          Livro
+          Book
         </h1>
         <BookDetail bookId={params.id} />
       </Card>
