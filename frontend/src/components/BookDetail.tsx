@@ -3,14 +3,15 @@
 import Stars from "@/components/ui/Stars";
 import { fetchBookById } from "@/service/books";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 
-interface Props {
-  bookId: string;
-}
+const BookDetail = () => {
+  const params = useParams<{ id: string }>();
 
-const BookDetail = ({ bookId }: Props) => {
+  const bookId = params.id;
+
   const {
     data: book,
     isLoading,

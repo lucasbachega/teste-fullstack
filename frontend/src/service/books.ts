@@ -5,7 +5,7 @@ export const fetchBooks = async (): Promise<IBook[]> => {
   try {
     const response = await api.get(`/books?limit=10`);
     return response.data;
-  } catch (err: any) {
+  } catch (err: unknown) {
     throw err;
   }
 };
@@ -14,7 +14,7 @@ export const fetchBookById = async (id: string): Promise<IBook> => {
   try {
     const response = await api.get(`/books/${id}`);
     return response.data;
-  } catch (err: any) {
+  } catch (err: unknown) {
     throw err;
   }
 };
@@ -26,8 +26,8 @@ export const submitReview = async (
   try {
     const response = await api.post(`/books/${bookId}/reviews`, review);
     return response.data;
-  } catch (err: any) {
-    console.log("ERROR FRONT: ", err);
+  } catch (err: unknown) {
+    console.error("ERROR FRONT: ", err);
     throw err;
   }
 };
@@ -38,7 +38,7 @@ export const fetchReviewsByBookId = async (
   try {
     const response = await api.get(`/reviews/book/${bookId}`);
     return response.data;
-  } catch (err: any) {
+  } catch (err: unknown) {
     throw err;
   }
 };

@@ -15,7 +15,7 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     ports:
-      - '9200:9100'
+      - '9100:9100'
     expose:
       - '9100'
     environment:
@@ -29,7 +29,7 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     ports:
-      - '3500:3000'
+      - '3000:3000'
     expose:
       - '3000'
     environment:
