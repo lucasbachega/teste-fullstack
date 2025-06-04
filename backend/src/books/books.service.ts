@@ -14,8 +14,8 @@ export class BooksService {
     return this.bookModel.create(createBookDto);
   }
 
-  async findAll(): Promise<any[]> {
-    const result = await this.bookModel.aggregate([
+  async findAll(limit = 10): Promise<Book[]> {
+    return this.bookModel.aggregate([
       {
         $lookup: {
           from: 'reviews',
@@ -41,8 +41,13 @@ export class BooksService {
           reviews: 0,
         },
       },
+      {
+        $sort: { avgRating: -1 },
+      },
+      {
+        $limit: limit,
+      },
     ]);
-    return result;
   }
 
   async findOne(id: string): Promise<any> {
