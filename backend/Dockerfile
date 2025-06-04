@@ -3,6 +3,7 @@ WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm i -g @nestjs/cli
+RUN npm i -g @nestjs/cli
 ENV NODE_ENV=production
-RUN npm run build
+RUN npm run seed
 CMD ["npm", "run", "start:prod"]

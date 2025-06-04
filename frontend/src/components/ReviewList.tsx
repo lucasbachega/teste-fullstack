@@ -19,25 +19,19 @@ const ReviewList = ({ bookId }: Props) => {
   if (isLoading) {
     return (
       <p className="my-20 text-center text-sm text-gray-400">
-        Carregando avaliações...
+        Loading reviews...
       </p>
     );
   }
 
   if (error) {
     return (
-      <p className="my-20 text-center text-red-500">
-        Erro ao carregar as avaliações.
-      </p>
+      <p className="my-20 text-center text-red-500">Error loading reviews</p>
     );
   }
 
   if (!reviews || reviews.length === 0) {
-    return (
-      <p className="my-20 text-center text-gray-500">
-        Nenhuma avaliação encontrada.
-      </p>
-    );
+    return <p className="my-20 text-center text-gray-500">No reviews found</p>;
   }
 
   return <ul className="space-y-4 mt-6">{reviews.map(renderItems)}</ul>;
