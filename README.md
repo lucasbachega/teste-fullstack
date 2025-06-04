@@ -76,6 +76,25 @@ npm run dev
 
 ---
 
+#### Tests e2e
+
+To run the backend **end-to-end (E2E) tests**, follow these steps:
+
+1. Create a `.env` file inside the `backend/` folder:
+2. Add your test database connection string to it:
+
+MONGO_URI=mongodb://localhost:27017/bookreviews_test
+
+> Make sure MongoDB is running locally and the `bookreviews_test` database is available.
+
+3. Inside the `backend/` folder, run:
+
+npm run test:e2e
+
+This will run the Jest test suite using the test database.
+
+---
+
 ## Seeding Data
 
 ```bash
