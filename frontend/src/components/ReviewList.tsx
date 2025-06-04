@@ -4,13 +4,11 @@ import { useReviews } from "@/hooks/useReviews";
 import ReviewListItem from "./ReviewListItem";
 
 interface Props {
-  bookId: string | undefined;
+  bookId: string;
 }
 
 const ReviewList = ({ bookId }: Props) => {
   const { data: reviews, isLoading, error } = useReviews(bookId);
-
-  if (!bookId) return null;
 
   if (isLoading) {
     return (

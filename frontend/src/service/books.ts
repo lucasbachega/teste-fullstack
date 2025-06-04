@@ -27,6 +27,7 @@ export const submitReview = async (
     const response = await api.post(`/books/${bookId}/reviews`, review);
     return response.data;
   } catch (err: any) {
+    console.log("ERROR FRONT: ", err);
     throw err;
   }
 };
