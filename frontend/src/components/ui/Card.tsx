@@ -12,7 +12,7 @@ const base =
   "rounded-2xl p-6 transition-colors bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100";
 
 const variants: Record<Variant, string> = {
-  default: "border border-zinc-200 dark:border-zinc-800",
+  default: "border border-zinc-300 dark:border-zinc-800",
   elevated: "shadow-md hover:shadow-lg",
   outline: "border-2 border-blue-500",
 };

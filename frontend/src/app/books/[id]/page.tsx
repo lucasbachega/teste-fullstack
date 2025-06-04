@@ -18,7 +18,7 @@ export default function BookDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-3xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <Card variant="elevated">
+      <Card variant="default">
         <h1 className="text-sm font-bold text-zinc-500 uppercase tracking-wide mb-2">
           Book
         </h1>

@@ -32,6 +32,15 @@ const BookList = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <p className="text-center text-zinc-800 dark:text-zinc-100 mb-1">
+        <a
+          className="underline"
+          href="https://www.linkedin.com/in/lucas-bachega-8751101b9/"
+          target="_blank"
+        >
+          Lucas Bachega
+        </a>
+      </p>
       <h1 className="text-4xl font-bold text-center text-zinc-800 dark:text-zinc-100 mb-12">
         📚 Top Books
       </h1>

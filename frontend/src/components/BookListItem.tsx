@@ -18,7 +18,7 @@ const BookListItem = ({
 }: Props) => {
   return (
     <Card
-      variant="elevated"
+      variant="default"
       className="flex items-start justify-between gap-3 relative"
     >
       <div className="flex-1 space-y-1">
@@ -52,7 +52,7 @@ const BookListItem = ({
       </div>
 
       <div className="self-end">
-        <Link href={`/books/${bookId}`}>Ver livro</Link>
+        <Link className="underline" href={`/books/${bookId}`}>View book</Link>
         {/* <Button variant="text">Ver livro</Button> */}
       </div>
     </Card>

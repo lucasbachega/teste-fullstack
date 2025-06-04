@@ -14,7 +14,7 @@ const Stars = ({
   disableText = false,
 }: Props) => {
   return (
-    <div className={`flex items-center gap-1 text-sm ${className}`}>
+    <div className={`flex items-center text-sm ${className}`}>
       {renderStars(avgRating)}
       {!disableText && (
         <span className="ml-2 text-zinc-500 dark:text-zinc-400">
